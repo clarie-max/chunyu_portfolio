@@ -1,0 +1,22 @@
+# Local preview and editor files
+node_modules/
+*.log
+.DS_Store
+
+# Working archives and old versions
+History Version/
+Originals/
+
+# Source documents and private reference material
+resources/awards/
+resources/projects/**/project-report.pdf
+resources/projects/**/*.pptx
+
+# Copyright-restricted full animation: only selected stills are published
+resources/projects/ai-literacy-animation/demo.mp4
+
+# Local video originals; published demos will use external embeds
+resources/projects/**/*.mp4
+resources/projects/**/*.mov
+resources/projects/**/*.webm
+resources/projects/**/*.avi

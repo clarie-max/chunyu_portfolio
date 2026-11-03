@@ -1,0 +1,10 @@
+{
+  "name": "chunyu-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chunyu Ji's interactive design portfolio",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project case study by Chunyu Ji.">
+  <link rel="icon" type="image/svg+xml" href="resources/images/cj-favicon.svg">
+  <title>Project — CJ</title>
+  <script>
+    (() => {
+      let theme;
+      try { theme = localStorage.getItem('portfolio-theme'); } catch (_) {}
+      if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      color-scheme: light;
+      --page:#f3f0e8; --surface:#fbfaf5; --soft:#e8e7df; --text:#24271f;
+      --muted:#65685e; --border:#d2d0c5; --accent:#4f684f; --grid:rgba(79,104,79,.045);
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --page:#0b1020; --surface:#151a2d; --soft:#10162a; --text:#f1efff;
+      --muted:#b8b8d2; --border:#333a59; --accent:#b9a7ff; --grid:rgba(151,137,232,.075);
+    }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--text); background-color:var(--page);
+      background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+      background-size:32px 32px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;
+      transition:background-color .42s ease,color .42s ease;
+    }
+    a { color:inherit; }
+    .topbar {
+      position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; padding:1rem max(1rem,calc((100vw - 1120px)/2));
+      background:color-mix(in srgb,var(--page) 92%,transparent); border-bottom:1px dashed var(--border); backdrop-filter:blur(16px);
+    }
+    .back {
+      display:inline-flex; align-items:center; gap:.6rem; padding:.75rem .9rem; border:1px solid var(--border);
+      border-radius:4px; background:var(--surface); text-decoration:none;
+      font:700 .76rem/1 "SFMono-Regular",Consolas,monospace;
+    }
+    .back:hover,.back:focus-visible { color:var(--accent); border-color:var(--accent); }
+    .case-id { color:var(--accent); font:700 .72rem/1 "SFMono-Regular",Consolas,monospace; letter-spacing:.08em; }
+    .theme-toggle { width:42px;height:42px;border:1px solid var(--border);border-radius:50%;background:var(--surface);color:var(--text);cursor:pointer; }
+    .wrap { width:min(calc(100% - 2rem),1120px); margin:auto; }
+    main { padding:clamp(3rem,8vw,7rem) 0 6rem; }
+    .category { color:var(--accent);font:700 .78rem/1 "SFMono-Regular",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase; }
+    h1 { margin:1rem 0 .75rem;font-size:clamp(3.6rem,10vw,8rem);line-height:.86;letter-spacing:-.075em; }
+    .date { color:var(--muted);font-family:"SFMono-Regular",Consolas,monospace; }
+    .hero-visual {
+      min-height:clamp(300px,60vw,680px);margin:clamp(2rem,5vw,4rem) 0;display:grid;place-items:center;
+      overflow:hidden;border:1px solid var(--border);border-radius:10px;background:var(--soft);font-size:clamp(6rem,20vw,14rem);
+    }
+    .hero-visual img { width:100%;height:100%;max-height:760px;object-fit:contain; }
+    .demo-section { margin:-1.5rem 0 clamp(3rem,6vw,5rem); }
+    .demo-label { margin:0 0 .7rem;color:var(--accent);font:700 .72rem/1 "SFMono-Regular",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase; }
+    .demo-video { display:block;width:100%;max-height:680px;background:#090b0a;border:1px solid var(--border);border-radius:10px; }
+    .demo-note { margin:.7rem 0 0;color:var(--muted);font-size:.9rem; }
+    .content-grid { display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,.5fr);gap:clamp(2rem,7vw,7rem);align-items:start; }
+    .story p { margin:0 0 1.5rem;color:var(--muted);font-size:clamp(1.05rem,1.7vw,1.25rem);line-height:1.8; }
+    .story strong { color:var(--text); }
+    .facts { border-top:2px solid var(--accent); }
+    .fact { padding:1rem 0;border-bottom:1px solid var(--border); }
+    .fact-label { display:block;margin-bottom:.35rem;color:var(--accent);font:700 .7rem/1 "SFMono-Regular",Consolas,monospace;text-transform:uppercase;letter-spacing:.08em; }
+    .fact-value { color:var(--muted);line-height:1.5; }
+    .visual-process { margin-top:clamp(3.5rem,7vw,6rem); padding-top:1.25rem; border-top:1px solid var(--border); }
+    .visual-process-heading { margin:0 0 1.4rem; color:var(--accent); font:700 .78rem/1 "SFMono-Regular",Consolas,monospace; letter-spacing:.1em; text-transform:uppercase; }
+    .media-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+    .media-card { margin:0; overflow:hidden; border:1px solid var(--border); border-radius:8px; background:var(--surface); }
+    .media-card.wide { grid-column:1 / -1; }
+    .media-card img { display:block; width:100%; max-height:720px; object-fit:contain; background:var(--soft); }
+    .media-card figcaption { padding:.8rem 1rem; color:var(--muted); font-size:.88rem; line-height:1.45; }
+    .bottom-nav { margin-top:5rem;padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem; }
+    .error { padding:6rem 0;text-align:center; }
+    @media(max-width:720px){.content-grid,.media-grid{grid-template-columns:1fr}.media-card.wide{grid-column:auto}.case-id{display:none}.bottom-nav{align-items:flex-start;flex-direction:column}.hero-visual{min-height:240px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="back" href="chunyu_portfolio.html#projects">← Back to projects</a>
+    <div class="case-id">CASE STUDY // <span id="caseNumber">01</span></div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" title="Switch theme">◐</button>
+  </header>
+  <main class="wrap" id="caseStudy">
+    <div class="category" id="category"></div>
+    <h1 id="title"></h1>
+    <div class="date" id="date"></div>
+    <div class="hero-visual" id="visual"></div>
+    <section class="demo-section" id="demoSection" hidden aria-label="Project demo">
+      <p class="demo-label" id="demoLabel">Project demo</p>
+      <video class="demo-video" id="demoVideo" controls preload="metadata" playsinline></video>
+      <p class="demo-note" id="demoNote"></p>
+    </section>
+    <div class="content-grid">
+      <section class="story" id="story" aria-label="Project overview"></section>
+      <aside class="facts" id="facts" aria-label="Project facts"></aside>
+    </div>
+    <section class="visual-process" id="visualProcess" hidden aria-labelledby="visualProcessHeading">
+      <h2 class="visual-process-heading" id="visualProcessHeading">Visual process</h2>
+      <div class="media-grid" id="mediaGrid"></div>
+    </section>
+    <div class="bottom-nav"><a class="back" href="chunyu_portfolio.html#projects">← Return to all projects</a><span class="case-id">END OF CASE FILE</span></div>
+  </main>
+  <script>
+    const projects = {
+      'shattered-light': { category:'Game Design', title:'Shattered Light', date:'Graduation Project · 2026', visual:'<img src="resources/projects/shattered-light/concept-art.png" alt="Shattered Light concept artwork">', role:'Solo Game Designer, Level Designer, Researcher & Unity Developer', tools:'Unity 2020.3 · C# · Figma · SPSS', focus:'Narrative systems · Level design · User testing', story:[
+        '<strong>Overview.</strong> A multimodal narrative puzzle game for university students experiencing academic stress. The experience translates cognitive behavioral therapy into approachable play.',
+        '<strong>Level structure.</strong> Three connected levels turn behavioral activation, cognitive restructuring, and problem-solving into exploration, dialogue choices, tasks, and environmental feedback.',
+        '<strong>My contribution.</strong> I defined the experience, structured the three-level emotional arc, designed the interaction and feedback systems, built the Unity prototype, and planned the research and user testing.',
+        '<strong>Outcome.</strong> Testing with 13 students achieved an SUS score of 80.8 and a PGQ score of 89.7. CBT knowledge accuracy increased from 48.5% to 88.7%.'
+      ], media:[
+        {src:'resources/projects/shattered-light/thesis-shattered-light-board.jpg',alt:'Shattered Light graduation project board',caption:'Graduation project overview: research framing, CBT-based design model, game structure, and usability evaluation.',wide:true},
+        {src:'resources/projects/shattered-light/design-framework.png',alt:'Shattered Light concept and interaction framework',caption:'The game’s CBT-informed interaction framework, connecting understanding, choice, practice, and reflection.',wide:true},
+        {src:'resources/projects/shattered-light/gameplay/level-01-intro.png',alt:'Shattered Light opening narrative text',caption:'Level 1 opening: setting the emotional context and inviting the player to begin reflection.'},
+        {src:'resources/projects/shattered-light/gameplay/level-01-classroom.png',alt:'Shattered Light classroom environment',caption:'Level 1 environment: an everyday classroom becomes a space for observation and learning.'},
+        {src:'resources/projects/shattered-light/gameplay/level-01-handbook.png',alt:'Shattered Light CBT handbook interface',caption:'Level 1 handbook: players discover the three core emotional-regulation approaches through an in-world object.'},
+        {src:'resources/projects/shattered-light/gameplay/level-01-exploration.png',alt:'Shattered Light classroom exploration scene',caption:'Level 1 exploration: environmental interaction connects the handbook to the playable space.'},
+        {src:'resources/projects/shattered-light/gameplay/level-02-phone.png',alt:'Shattered Light phone interaction scene',caption:'Level 2: a familiar phone interaction introduces a moment of emotional friction.'},
+        {src:'resources/projects/shattered-light/gameplay/level-02-choice.png',alt:'Shattered Light cognitive restructuring choice interface',caption:'Level 2 decision screen: players compare possible responses and practice reframing a difficult thought.'},
+        {src:'resources/projects/shattered-light/gameplay/level-02-typewriter-puzzle.png',alt:'Shattered Light typewriter puzzle scene',caption:'Level 2 interaction: a typewriter puzzle externalizes thoughts as an actionable game task.'},
+        {src:'resources/projects/shattered-light/gameplay/level-02-typewriter-complete.png',alt:'Shattered Light typewriter state',caption:'Level 2 state change: interaction feedback marks progress through the puzzle.'},
+        {src:'resources/projects/shattered-light/gameplay/level-03-forest.png',alt:'Shattered Light forest level',caption:'Level 3: an open forest space supports problem-solving through navigation and environmental discovery.'}
+      ]},
+      'self': { category:'Interactive Design', title:'SELF', date:'Sept 2025 – Nov 2025', visual:'<img src="resources/projects/self/experience-hero.png" alt="Hands interacting with the projected particle field in SELF">', role:'Interaction Designer', tools:'Leap Motion · TouchDesigner · Figma', focus:'Embodied interaction · Emotion visualization', story:['<strong>Overview.</strong> SELF is a self-reflection interactive installation that lets participants examine their inner personality through a responsive digital avatar and projected particle field.', '<strong>Experience arc.</strong> The installation moves between two situations: being alone and entering social occasions. These shifts frame the relationship between the Id, Ego, and Superego as participants move through the experience.', '<strong>Gesture as input.</strong> Leap Motion reads hand motion, speed, acceleration, jitter, and the distance between hands. The system uses these signals to infer calm or tense states and translates them into color, particles, and avatar behavior.', '<strong>Design intention.</strong> By making internal states visible through the body, the installation invites participants to pause, observe their reactions, and reconsider how they present themselves around others.'], media:[{src:'resources/projects/self/interaction-journey.png',alt:'SELF interaction journey from calm to social noise',caption:'Interaction journey: gestures move between calm, social pressure, and a return to reflection.',wide:true},{src:'resources/projects/self/particle-states.png',alt:'SELF projected particle and avatar visual states',caption:'Visual states respond to changes in gesture and emotional intensity.'},{src:'resources/projects/self/hero-image.png',alt:'SELF installation overview',caption:'Installation overview and experience framing.'}] },
+      'sharehouse': { category:'Service & UX', title:'ShareHouse', date:'July 2025 – Oct 2025', visual:'<img src="resources/projects/sharehouse/hero-image.png" alt="ShareHouse household collaboration app interface">', role:'Service & UX Designer', tools:'NFC · Mobile UI · Data visualization', focus:'Domestic collaboration · Emotional labor', story:['<strong>Overview.</strong> ShareHouse is a household collaboration system for making domestic and emotional labor visible, discussable, and easier to coordinate across family members.', '<strong>Research.</strong> Surveys and interviews surfaced unequal task division, low recognition of invisible work, mismatched standards of cleanliness, and conflict around responsibility. The research mapped the needs of caregivers, partners, and children.', '<strong>System design.</strong> NFC-supported task records connect to a mobile app for household setup, shared schedules, contribution history, personal data, and family rankings. The system turns fragmented chores into a shared view of participation.', '<strong>Experience goal.</strong> The app pairs practical scheduling with lightweight feedback and family incentives, helping members recognize contributions and build a fairer daily rhythm together.'] },
+      'terranova-walker': { category:'Product & Hardware', title:'TerraNova Walker', date:'Jan 2025 – Apr 2025', visual:'<img src="resources/projects/terranova-walker/robot-hero.png" alt="TerraNova Walker metamorphic spider robot">', role:'Designer & Prototyper', tools:'Arduino · Mechanical prototyping', focus:'Traversal · State transitions', story:['<strong>Overview.</strong> TerraNova Walker is a metamorphic spider robot with three movement configurations and multiple Arduino-controlled gaits.', '<strong>Design focus.</strong> The project explores movement rules, state transitions, and how one mechanical system can adapt its traversal behavior to different terrain.'], media:[{src:'resources/projects/terranova-walker/terrain-view-side.png',alt:'TerraNova Walker side view across rocky terrain',caption:'Side view: chassis, linkages, and wheel-leg configuration in a rocky environment.'},{src:'resources/projects/terranova-walker/terrain-view-top.png',alt:'TerraNova Walker top view across rocky terrain',caption:'Top view: the articulated mechanical structure and terrain-ready stance.'},{src:'resources/projects/terranova-walker/project-poster.png',alt:'TerraNova Walker project poster',caption:'Project overview, movement configurations, and prototype development.',wide:true}] },
+      'luckin-paw': { category:'Product & Hardware', title:'Luckin Paw', date:'Sept 2024 – Dec 2024', visual:'<img src="resources/projects/luckin-paw/product-overview.png" alt="Luckin Paw children’s oral-care product overview">', role:'Product & Experience Designer', tools:'Physical prototyping · Mobile UX · Multimodal feedback', focus:'Behavior loop · Children’s experience', story:['<strong>Overview.</strong> Luckin Paw is a children’s oral-care experience built around a repeatable action-and-reward loop, playful physical interaction, and a companion app for families.', '<strong>Product system.</strong> The cat-paw-shaped base stores replaceable brush heads and includes a disinfection lamp in the toothbrush cover. The physical product provides a screen-light alternative while making the routine feel more approachable.', '<strong>Guided play.</strong> Children follow brushing animations, receive real-time encouragement, and unlock avatar content with earned points. The system turns a daily routine into a short, understandable sequence of actions and feedback.', '<strong>Family layer.</strong> A parent-facing app supports tutorial viewing, brushing records, progress tracking, rewards, and related service content—making long-term habit development visible without centering the child experience on screens.'], media:[{src:'resources/projects/luckin-paw/child-interaction-flow.png',alt:'Luckin Paw child-facing interaction flow',caption:'Child-facing flow: onboarding, guided brushing, rewards, and character interaction.'},{src:'resources/projects/luckin-paw/app-system.png',alt:'Luckin Paw mobile app and family service system',caption:'Family service layer: tutorials, brushing records, progress views, and reward-related features.',wide:true},{src:'resources/projects/luckin-paw/project-poster.jpg',alt:'Luckin Paw project poster',caption:'Product concept and physical-system presentation.'}] },
+      'who-am-i': { category:'Interactive Design', title:'Who Am I', date:'Independent Project', visual:'🤔', role:'Interaction Designer', tools:'Interactive media', focus:'Identity · Self-perception', story:['An introspective interactive-media exploration of personal identity, examining the relationship between internal self-perception and the identities constructed through external representation.'] },
+      'huiju-flower-shop': { category:'Service & UX', title:'Huiju Flower Shop', date:'Mar 2025 – Jun 2025', visual:'<img src="resources/projects/huiju-flower-shop/service-system-map.png" alt="Huiju Flower Shop service system map">', demo:'resources/projects/huiju-flower-shop/demo.mp4', demoLabel:'Project video', demoNote:'Service-design concept and experience overview.', role:'Service Designer', tools:'User research · Spatial service · App UX', focus:'Older adults · Light social connection', story:['<strong>Overview.</strong> A service-design project for middle-aged and older flower enthusiasts, combining floral aesthetics, emotional wellbeing, and light social experiences through a connected physical space and digital app.', '<strong>Service system.</strong> The ecosystem connects flower suppliers, activity spaces, institutional partners, staff, media, and older participants—linking material, information, and service flows around a shared floral experience.'], media:[{src:'resources/projects/huiju-flower-shop/app-interface-flow.png',alt:'Huiju Flower Shop mobile app interface flow',caption:'Mobile service flow: activity discovery, event details, registration, plant care, and order-related features.',wide:true}] },
+      'echo-wood': { category:'Interactive Design', title:'Echo Wood', date:'Apr 2025 – Jun 2025', visual:'<img src="resources/projects/echo-wood/hero-image.png" alt="Echo Wood interactive installation">', demo:'resources/projects/echo-wood/demo.mp4', demoLabel:'Interactive demo', demoNote:'Current demo version. English subtitles will be added in a later update.', role:'Interaction Designer & Developer', tools:'Python · Hand tracking · QR-linked service', focus:'Public interaction · Emotional sharing', story:['<strong>Overview.</strong> Echo Wood is a public interactive “tree hollow” for people waiting in transit spaces. It offers a short pause for reading, reacting to, and sharing small thoughts with strangers.', '<strong>Interaction.</strong> A waving gesture uncovers a hidden message. Different colors signal different themes, such as pressure release, encouragement, or everyday observations. A like gesture creates immediate feedback and reveals that someone else has seen the message.', '<strong>Service layer.</strong> Visitors can scan a QR code to submit a “tree bell,” receive reactions or replies, and reconnect through a lightweight public-account or app service after leaving the installation.', '<strong>Design rationale.</strong> The concept shifts the passive subway “tree hollow” display into a warm, legible interaction that fits short waiting periods and supports low-pressure emotional expression.'] },
+      'sleep-pet-manor': { category:'Game Design', title:'Sleep Pet Manor', date:'Mar 2025 – Apr 2025', visual:'<img src="resources/projects/sleep-pet-manor/thumbnail.jpg" alt="Sleep Pet Manor game concept artwork">', role:'Game & UX Designer', tools:'Game systems · Mobile UX', focus:'Core loop · Collection · Progression', story:['A habit-building game concept organized around a sleep-and-reward core loop. Pet collection, progression goals, and cooperative challenges encourage players to maintain healthier schedules and unlock rare species.'] },
+      'ergonomic-mouse': { category:'Product & Hardware', title:'Ergonomic Mouse', date:'Oct 2024 – Nov 2024', visual:'🖱️', role:'Product Designer', tools:'Python · MediaPipe · Hand-data analysis · Clay modeling', focus:'Ergonomics · User research', story:['<strong>Problem.</strong> The project focused on discomfort from extended mouse use among women aged 18–25, especially strain in the wrist, index finger, palm, and thumb.', '<strong>Research.</strong> I combined observation interviews with a 42-response survey, in which 76.19% of respondents were women. The study showed that discomfort increased with longer use, especially after five hours.', '<strong>Form development.</strong> I used MediaPipe to analyze hand landmarks, gathered resting-hand measurements from 16 women, then developed and tested five clay models. User feedback identified the second model as the preferred direction.', '<strong>Design outcome.</strong> The final form follows the resting hand, adds support around the palm and thumb, reduces wrist bend, and angles the scroll wheel to shorten index-finger travel.'] },
+      'smart-garment-steamer': { category:'Product & Hardware', title:'Smart Garment Steamer', date:'Apr 2025 – Jun 2025', visual:'<img src="resources/projects/smart-garment-steamer/project-poster.png" alt="Smart Garment Steamer project poster">', demo:'resources/projects/smart-garment-steamer/demo.mp4', demoLabel:'Product render', demoNote:'Rendered product demonstration.', role:'Product Designer', tools:'Mechanical design · Product prototyping', focus:'Space efficiency · Garment care', story:['<strong>Overview.</strong> A vertical-space steam-care machine with a foldable structure integrating steaming, UVC sterilization, and deodorizing.', '<strong>Design aim.</strong> The system consolidates several garment-care steps in a compact footprint, helping make daily care more space-efficient and approachable.'] },
+      'music-painting-machine': { category:'Interactive Design', title:'Music Painting Machine', date:'Oct 2024 – Jan 2025', visual:'<img src="resources/projects/music-painting-machine/hero-render.png" alt="Music Painting Machine wood prototype render">', demo:'resources/projects/music-painting-machine/demo.mp4', demoLabel:'Prototype demo', demoNote:'A kinetic drawing machine that turns music into physical visual output.', role:'Three-person design and technology project', tools:'Arduino · Python · Librosa · Musicnn · Transformer · MediaPipe', focus:'Music visualization · Kinetic drawing · Physical output', story:['<strong>Overview.</strong> A dual-pen kinetic drawing machine that turns music into physical artwork on a rotating paper disc. The project explores how audio can become an embodied visual experience rather than a screen-based visualization.', '<strong>Two-track system.</strong> One pen maps RMS energy extracted with Librosa into motion. The other interprets music style through Musicnn and an adapted Transformer model, then draws a corresponding generative pattern.', '<strong>Interaction and hardware.</strong> Arduino controls the turntable, stepper motors, and pen lift. MediaPipe recognizes an OK gesture to switch audio. The second prototype replaced slower motors and strengthened the structure to improve drawing precision.', '<strong>Outcome.</strong> The machine combines sound, movement, and drawing into one process, producing a distinct physical image for each listening session.'], media:[{src:'resources/projects/music-painting-machine/drawing-output-comparison.png',alt:'Music Painting Machine physical drawing outputs',caption:'Two physical drawing outcomes produced by the machine from different music inputs.',wide:true}] },
+      'ai-literacy-animation': { category:'Interactive Design', title:'AI Literacy Animation', date:'Educational Animation', visual:'<img src="resources/projects/ai-literacy-animation/animation-still-dialogue.png" alt="Animated characters explaining an AI concept">', role:'Animation Designer', tools:'Educational animation · Transformer · Visual storytelling', focus:'AI literacy · Beginner education', story:['<strong>Overview.</strong> An introductory animation project that explains foundational artificial-intelligence concepts through clear, approachable visual storytelling.', '<strong>Transformer, made approachable.</strong> The animation translates the Transformer model and related AI ideas into a beginner-friendly narrative, using visual explanation rather than technical jargon.', '<strong>Public presentation.</strong> This portfolio shares selected animation stills rather than the full film because of copyright restrictions. <a href="https://mp.weixin.qq.com/s/epikNeiEwUdZk046X9H8kw" target="_blank" rel="noreferrer">Read the official SCUT coverage ↗</a>.'], media:[{src:'resources/projects/ai-literacy-animation/animation-still-magic-glasses.png',alt:'Animation still introducing a magic glasses analogy for AI',caption:'Animation still: using a “magic glasses” analogy to introduce how a system helps interpret language.'},{src:'resources/projects/ai-literacy-animation/animation-still-collective-thought.png',alt:'Animation still showing multiple characters contributing to understanding',caption:'Animation still: a visual explanation of collective context and interpretation.'},{src:'resources/projects/ai-literacy-animation/animation-still-dialogue.png',alt:'Animation still with characters in dialogue',caption:'Animation still: a narrative scene used to make abstract AI ideas more approachable.',wide:true}] }
+    };
+    const order = Object.keys(projects);
+    const slug = new URLSearchParams(location.search).get('project') || 'shattered-light';
+    const project = projects[slug];
+    if (!project) {
+      document.getElementById('caseStudy').innerHTML = '<div class="error"><p class="category">CASE FILE NOT FOUND</p><h1>Project unavailable.</h1><a class="back" href="chunyu_portfolio.html#projects">← Back to projects</a></div>';
+    } else {
+      document.title = `${project.title} — CJ`;
+      document.getElementById('caseNumber').textContent = String(order.indexOf(slug)+1).padStart(2,'0');
+      document.getElementById('category').textContent = project.category;
+      document.getElementById('title').textContent = project.title;
+      document.getElementById('date').textContent = project.date;
+      document.getElementById('visual').innerHTML = project.visual;
+      const demoSection = document.getElementById('demoSection');
+      const demoVideo = document.getElementById('demoVideo');
+      // Keep local previews available while external video links are prepared.
+      const isLocalPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) || location.protocol === 'file:';
+      if (project.demo && isLocalPreview) {
+        demoVideo.src = project.demo;
+        document.getElementById('demoLabel').textContent = project.demoLabel || 'Project demo';
+        document.getElementById('demoNote').textContent = project.demoNote || '';
+        demoSection.hidden = false;
+      }
+      document.getElementById('story').innerHTML = project.story.map(text => `<p>${text}</p>`).join('');
+      document.getElementById('facts').innerHTML = [['Role',project.role],['Tools',project.tools],['Design focus',project.focus]].map(([label,value]) => `<div class="fact"><span class="fact-label">${label}</span><div class="fact-value">${value}</div></div>`).join('');
+      const visualProcess = document.getElementById('visualProcess');
+      if (project.media?.length) {
+        document.getElementById('mediaGrid').innerHTML = project.media.map(item => `<figure class="media-card${item.wide ? ' wide' : ''}"><img src="${item.src}" alt="${item.alt}" loading="lazy"><figcaption>${item.caption}</figcaption></figure>`).join('');
+        visualProcess.hidden = false;
+      }
+    }
+    const toggle = document.getElementById('themeToggle');
+    function updateToggle(){const dark=document.documentElement.dataset.theme==='dark';toggle.title=toggle.ariaLabel=dark?'Switch to light mode':'Switch to dark mode';}
+    toggle.addEventListener('click',()=>{const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=theme;try{localStorage.setItem('portfolio-theme',theme)}catch(_){}updateToggle();});
+    updateToggle();
+  </script>
+</body>
+</html>
