@@ -83,7 +83,7 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="back" href="chunyu_portfolio.html#projects">← Back to projects</a>
+    <a class="back" href="projects.html">← Back to projects</a>
     <div class="case-id">CASE STUDY // <span id="caseNumber">01</span></div>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" title="Switch theme">◐</button>
   </header>
@@ -105,7 +105,7 @@
       <h2 class="visual-process-heading" id="visualProcessHeading">Visual process</h2>
       <div class="media-grid" id="mediaGrid"></div>
     </section>
-    <div class="bottom-nav"><a class="back" href="chunyu_portfolio.html#projects">← Return to all projects</a><span class="case-id">END OF CASE FILE</span></div>
+    <div class="bottom-nav"><a class="back" href="projects.html">← Return to all projects</a><span class="case-id">END OF CASE FILE</span></div>
   </main>
   <script>
     const projects = {
@@ -140,11 +140,40 @@
       'music-painting-machine': { category:'Interactive Design', title:'Music Painting Machine', date:'Oct 2024 – Jan 2025', visual:'<img src="resources/projects/music-painting-machine/hero-render.png" alt="Music Painting Machine wood prototype render">', demo:'resources/projects/music-painting-machine/demo.mp4', demoLabel:'Prototype demo', demoNote:'A kinetic drawing machine that turns music into physical visual output.', role:'Three-person design and technology project', tools:'Arduino · Python · Librosa · Musicnn · Transformer · MediaPipe', focus:'Music visualization · Kinetic drawing · Physical output', story:['<strong>Overview.</strong> A dual-pen kinetic drawing machine that turns music into physical artwork on a rotating paper disc. The project explores how audio can become an embodied visual experience rather than a screen-based visualization.', '<strong>Two-track system.</strong> One pen maps RMS energy extracted with Librosa into motion. The other interprets music style through Musicnn and an adapted Transformer model, then draws a corresponding generative pattern.', '<strong>Interaction and hardware.</strong> Arduino controls the turntable, stepper motors, and pen lift. MediaPipe recognizes an OK gesture to switch audio. The second prototype replaced slower motors and strengthened the structure to improve drawing precision.', '<strong>Outcome.</strong> The machine combines sound, movement, and drawing into one process, producing a distinct physical image for each listening session.'], media:[{src:'resources/projects/music-painting-machine/drawing-output-comparison.png',alt:'Music Painting Machine physical drawing outputs',caption:'Two physical drawing outcomes produced by the machine from different music inputs.',wide:true}] },
       'ai-literacy-animation': { category:'Interactive Design', title:'AI Literacy Animation', date:'Educational Animation', visual:'<img src="resources/projects/ai-literacy-animation/animation-still-dialogue.png" alt="Animated characters explaining an AI concept">', role:'Animation Designer', tools:'Educational animation · Transformer · Visual storytelling', focus:'AI literacy · Beginner education', story:['<strong>Overview.</strong> An introductory animation project that explains foundational artificial-intelligence concepts through clear, approachable visual storytelling.', '<strong>Transformer, made approachable.</strong> The animation translates the Transformer model and related AI ideas into a beginner-friendly narrative, using visual explanation rather than technical jargon.', '<strong>Public presentation.</strong> This portfolio shares selected animation stills rather than the full film because of copyright restrictions. <a href="https://mp.weixin.qq.com/s/epikNeiEwUdZk046X9H8kw" target="_blank" rel="noreferrer">Read the official SCUT coverage ↗</a>.'], media:[{src:'resources/projects/ai-literacy-animation/animation-still-magic-glasses.png',alt:'Animation still introducing a magic glasses analogy for AI',caption:'Animation still: using a “magic glasses” analogy to introduce how a system helps interpret language.'},{src:'resources/projects/ai-literacy-animation/animation-still-collective-thought.png',alt:'Animation still showing multiple characters contributing to understanding',caption:'Animation still: a visual explanation of collective context and interpretation.'},{src:'resources/projects/ai-literacy-animation/animation-still-dialogue.png',alt:'Animation still with characters in dialogue',caption:'Animation still: a narrative scene used to make abstract AI ideas more approachable.',wide:true}] }
     };
+    projects['trick-or-treat'] = {
+      category:'Game Design · Tabletop', title:'Trick or Treat', date:'USC · Tabletop Game',
+      visual:'<img src="resources/projects/trick-or-treat/hero-image.png" alt="Trick or Treat title artwork">',
+      role:'Team project · Chunyu Ji, Lejie Lin, Peggy Zhu', tools:'Physical prototyping · Rule design · Playtesting', focus:'4 players · Spatial planning · Player interaction',
+      story:[
+        '<strong>Overview.</strong> A competitive Halloween tabletop game where four players collect candies, fit cards into a 6×6 basket, and connect matching candy types to score. Limited space makes each placement a trade-off between immediate points and room for future cards.',
+        '<strong>Core decisions.</strong> Each turn starts with a choice between drawing a Treat Card or a Trick Card. Treat Cards can rotate and layer without covering other candies. Trick Cards let players rearrange, steal, or remove treats, making opponents part of the spatial puzzle.',
+        '<strong>Iteration.</strong> The team moved from cooperative candy collection to individual competition with basket boards. Early tests led to layering and expanded Trick Card effects. To address slow pacing and imbalance, the team reduced Treat Cards from 48 to 39 and capped Trick Cards in hand at three.',
+        '<strong>Playtesting.</strong> Players initially avoided Trick Cards and focused on their own boards. Giving each player a starting Trick Card and revising its effects encouraged interaction. The presentation records a shift from monotonous solo play toward a more challenging social experience.',
+        '<strong>Credits.</strong> Designed by Chunyu Ji, Lejie Lin, and Peggy Zhu. The team presentation documents AI-assisted artwork with manual Photoshop corrections for print.'
+      ],
+      media:[{src:'resources/projects/trick-or-treat/playtest-session.png',alt:'Trick or Treat tabletop playtest',caption:'Playtest setup with four basket boards and shared card decks.',wide:true},{src:'resources/projects/trick-or-treat/rules-v4-page-01.png',alt:'Trick or Treat components and setup rules',caption:'Components, Trick Card effects, and setup.',wide:true},{src:'resources/projects/trick-or-treat/rules-v4-page-02.png',alt:'Trick or Treat turn sequence and scoring',caption:'Turn structure, spatial placement, scoring, and end conditions.',wide:true}]
+    };
+    projects['battlefield-3036'] = {
+      category:'Game Design · Tabletop', title:'Battlefield 3036', date:'USC · Tabletop Game',
+      visual:'<img src="resources/projects/battlefield-3036/rules-v1-page-01.jpg" alt="Battlefield 3036 overview and board setup">',
+      role:'Co-designer & rules editor', tools:'Physical prototyping · Rule design · Playtesting', focus:'Risk-taking · Tactical interaction · Survival race',
+      story:[
+        '<strong>Overview.</strong> Tank crews from competing factions race to escape a battlefield filled with hidden directional mines. The first player to escape wins, while losing all health eliminates a tank. The last surviving player can also win.',
+        '<strong>Core tension.</strong> Players balance targeting opponents with protecting their own tank. Detonate, Shield, Stealth, and Grappling Hook cards interact with a route containing regular and special terrain, creating opportunities for reversals and temporary alliances.',
+        '<strong>Iteration.</strong> Early playtests ended too quickly and offered too little strategy. The team expanded the route with more regular and special tiles and added Stealth and Grappling Hook cards to broaden the available choices.',
+        '<strong>Design learning.</strong> The team identified the need to encourage communication explicitly, reduce excessive randomness, and consider the experience of players in different game states.',
+        '<strong>Credits.</strong> Game design: Chunyu Ji, Xinrui Wang, and Emily Cai. Rules editing: Chunyu Ji and Xinrui Wang. Graphic design: Emily Cai. The rule sheet credits ChatGPT for illustration.'
+      ],
+      media:[{src:'resources/projects/battlefield-3036/rules-v1-page-02.jpg',alt:'Battlefield 3036 gameplay rules',caption:'Detailed gameplay reference and action rules.',wide:true}]
+    };
+    projects['echo-wood'].youtubeId = 'f8-BJFBRETY';
+    projects['luckin-paw'].youtubeId = 'oGEhQD9pXHQ';
+    projects['luckin-paw'].demoLabel = 'Product design demo';
     const order = Object.keys(projects);
     const slug = new URLSearchParams(location.search).get('project') || 'shattered-light';
     const project = projects[slug];
     if (!project) {
-      document.getElementById('caseStudy').innerHTML = '<div class="error"><p class="category">CASE FILE NOT FOUND</p><h1>Project unavailable.</h1><a class="back" href="chunyu_portfolio.html#projects">← Back to projects</a></div>';
+      document.getElementById('caseStudy').innerHTML = '<div class="error"><p class="category">CASE FILE NOT FOUND</p><h1>Project unavailable.</h1><a class="back" href="projects.html">← Back to projects</a></div>';
     } else {
       document.title = `${project.title} — CJ`;
       document.getElementById('caseNumber').textContent = String(order.indexOf(slug)+1).padStart(2,'0');
@@ -156,8 +185,21 @@
       const demoVideo = document.getElementById('demoVideo');
       // Keep local previews available while external video links are prepared.
       const isLocalPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) || location.protocol === 'file:';
-      if (project.demo && isLocalPreview) {
-        demoVideo.src = project.demo;
+      if (project.youtubeId || (project.demo && isLocalPreview)) {
+        if (project.youtubeId) {
+          const player = document.createElement('iframe');
+          player.className = 'demo-video';
+          player.style.aspectRatio = '16 / 9';
+          player.src = `https://www.youtube-nocookie.com/embed/${project.youtubeId}`;
+          player.title = `${project.title} — video demo`;
+          player.loading = 'lazy';
+          player.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          player.allowFullscreen = true;
+          player.referrerPolicy = 'strict-origin-when-cross-origin';
+          demoVideo.replaceWith(player);
+        } else {
+          demoVideo.src = project.demo;
+        }
         document.getElementById('demoLabel').textContent = project.demoLabel || 'Project demo';
         document.getElementById('demoNote').textContent = project.demoNote || '';
         demoSection.hidden = false;

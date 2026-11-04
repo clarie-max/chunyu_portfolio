@@ -20,3 +20,7 @@ resources/projects/**/*.mp4
 resources/projects/**/*.mov
 resources/projects/**/*.webm
 resources/projects/**/*.avi
+
+# Tabletop source rulebooks; selected rule images are displayed instead
+resources/projects/trick-or-treat/*.pdf
+resources/projects/battlefield-3036/*.pdf
