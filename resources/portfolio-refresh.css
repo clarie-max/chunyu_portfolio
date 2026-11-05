@@ -160,6 +160,7 @@ body[data-page="projects"] #nav { backdrop-filter:none; background:var(--page); 
 .level-card:is(:hover,:focus-within) .card-corner::before { transform:scaleX(1.8); }
 .level-card:is(:hover,:focus-within) .card-corner::after { transform:scaleY(1.8); }
 .projects-grid .project-card[data-project="shattered-light"] { order:-15; }
+.projects-grid .project-card[data-project="a-way-to-you"] { order:-14; }
 @media(min-width:1100px) { .projects-grid .project-card[data-project="shattered-light"] { order:-15; grid-column:span 2; } .projects-grid .project-card[data-project="shattered-light"] .project-image { aspect-ratio:2.6; } }
 @media(max-width:1000px) { .discipline-launcher { grid-template-columns:repeat(2,minmax(0,1fr)); } .projects-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:600px) { .hero { padding:130px 24px 50px; } .hero .subtitle { font-size:1.45rem; } .role-prefix { display:block; } .discipline-launcher { margin-top:36px; } .discipline-launcher button { padding:18px 8px; gap:8px; } .discipline-symbol { font-size:1.4rem; } .discipline-launcher strong { font-size:.75rem; } .projects-grid { grid-template-columns:1fr; } .discipline-intro { gap:16px; align-items:flex-start; } }

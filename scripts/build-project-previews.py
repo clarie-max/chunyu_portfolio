@@ -34,7 +34,7 @@ def preview_tag(match):
                 preview.save(target, "WEBP", quality=82, method=6)
             variants.append((target.relative_to(ROOT).as_posix(), width, height))
     featured = source_path.parent.name == "shattered-light"
-    first_row = featured or source_path.parent.name == "trick-or-treat"
+    first_row = featured or source_path.parent.name == "a-way-to-you"
     fallback = variants[-1] if featured else variants[0]
     sizes = (
         ("(min-width: 1100px) 924px, " if featured else "")

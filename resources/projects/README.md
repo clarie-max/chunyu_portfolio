@@ -4,6 +4,7 @@ Each folder uses the project slug that appears in the portfolio. Keep source fil
 
 | Folder | Contents |
 | --- | --- |
+| `a-way-to-you` | cover artwork, gameplay screenshots, local demo, and development recording |
 | `echo-wood` | hero image, presentation deck, and demo video |
 | `ai-literacy-animation` | Transformer presentation decks and selected educational-animation stills |
 | `ergonomic-mouse` | project report and 3D model files |
