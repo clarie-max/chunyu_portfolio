@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="480" y1="0" x2="480" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#15213d"/><stop offset="1" stop-color="#313a65"/></linearGradient>
+    <linearGradient id="light" x1="480" y1="180" x2="480" y2="510" gradientUnits="userSpaceOnUse"><stop stop-color="#ebf4da"/><stop offset="1" stop-color="#abb9f1" stop-opacity="0"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" stroke="#a8b7df" stroke-opacity=".09"/></pattern>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h960v600H0z"/><path fill="url(#grid)" d="M0 0h960v600H0z"/>
+  <rect x="100" y="62" width="760" height="476" rx="12" stroke="#a6b7da" stroke-opacity=".5"/>
+  <path d="M100 108h760" stroke="#a6b7da" stroke-opacity=".5"/><circle cx="127" cy="85" r="4" fill="#d4e6d1"/><circle cx="145" cy="85" r="4" fill="#a1b3d6"/><circle cx="163" cy="85" r="4" fill="#778bb1"/>
+  <text x="480" y="90" text-anchor="middle" fill="#cbd7ed" font-family="monospace" font-size="14" letter-spacing="3">Doorcom</text>
+  <path d="M391 381 252 509h456L569 381" fill="url(#light)" opacity=".45"/>
+  <path fill="#d6e4cf" d="M385 171h190v218H385z"/><path fill="#192641" d="M397 183h166v206H397z"/>
+  <path d="m397 183 112 31v206l-112-31z" fill="#c6d2e7" stroke="#eff6ef" stroke-width="2"/>
+  <circle cx="490" cy="310" r="5" fill="#4a5d84"/>
+  <path d="M220 389h165m190 0h165" stroke="#b1c1de" stroke-opacity=".35"/>
+  <text x="480" y="472" text-anchor="middle" fill="#e5ede9" font-family="monospace" font-size="18" letter-spacing="4">ONE MORE DOOR?</text>
+  <text x="480" y="567" text-anchor="middle" fill="#a9bad9" font-family="monospace" font-size="11" letter-spacing="2">PROJECT ILLUSTRATION</text>
+</svg>

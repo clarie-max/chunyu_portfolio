@@ -35,10 +35,9 @@ def preview_tag(match):
             variants.append((target.relative_to(ROOT).as_posix(), width, height))
     featured = source_path.parent.name == "shattered-light"
     first_row = featured or source_path.parent.name == "a-way-to-you"
-    fallback = variants[-1] if featured else variants[0]
+    fallback = variants[0]
     sizes = (
-        ("(min-width: 1100px) 924px, " if featured else "")
-        + "(max-width: 600px) calc(100vw - 64px), "
+        "(max-width: 600px) calc(100vw - 64px), "
         + "(max-width: 768px) calc((100vw - 92px) / 2), "
         + "(max-width: 1000px) calc((100vw - 156px) / 2), "
         + "(min-width: 1528px) 448px, calc((100vw - 184px) / 3)"

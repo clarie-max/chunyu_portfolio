@@ -16,9 +16,12 @@ body { overflow-x:clip; }
 .skip-link:focus { transform:none; }
 .nav-links a[aria-current="page"] { color:var(--accent); }
 .nav-links a[aria-current="page"]::after { width:100%; }
-body[data-page="projects"] #projects { padding-top:160px; min-height:80vh; }
-body[data-page="projects"] #projects>.section-title { text-align:left; display:block; max-width:1400px; margin:0 auto 36px; }
+body:is([data-page="projects"],[data-page="about"]) { --content-gutter:clamp(24px,5vw,80px); }
+body[data-page="projects"] #projects { padding-top:160px; padding-inline:var(--content-gutter); min-height:80vh; }
+body[data-page="projects"] #projects>.section-title { text-align:left; display:block; max-width:1520px; margin:0 auto 36px; }
+body[data-page="projects"] :is(.projects-grid,.discipline-intro,.projects-filter) { max-width:1520px; }
 .page-turner { display:flex; align-items:center; justify-content:space-between; gap:24px; margin:0 6vw; padding:28px 0; border-top:1px solid var(--border); color:var(--muted); font-size:.82rem; }
+body:is([data-page="projects"],[data-page="about"]) .page-turner { margin-inline:var(--content-gutter); }
 .page-turner a { color:var(--accent); text-decoration:none; font-weight:650; }
 .page-turner a:hover { text-decoration:underline; }
 .page-steps { display:flex; gap:22px; }
@@ -28,7 +31,7 @@ body[data-page="projects"] #projects>.section-title { text-align:left; display:b
 .page-turner-note { font-size:.65rem; letter-spacing:.08em; }
 body[data-page="about"] section { min-height:0; }
 #contact { scroll-margin-top:110px; }
-.personal-intro { max-width:1400px; margin:auto; padding:160px 6vw 70px; display:grid; grid-template-columns:1.25fr .75fr; gap:64px; align-items:center; }
+.personal-intro { max-width:1520px; margin:auto; padding:160px var(--content-gutter,6vw) 70px; display:grid; grid-template-columns:1.25fr .75fr; gap:64px; align-items:center; }
 .page-eyebrow { color:var(--accent); font-family:monospace; font-size:.75rem; letter-spacing:.12em; margin-bottom:22px; }
 .personal-copy h1 { font-size:clamp(3rem,5.7vw,5.5rem); line-height:1.08; letter-spacing:-.045em; margin-bottom:28px; }
 .personal-copy h1 em { color:var(--accent); font-style:normal; }
@@ -37,7 +40,7 @@ body[data-page="about"] section { min-height:0; }
 .personal-photo { margin:0; transform:rotate(2deg); }
 .personal-photo img { display:block; width:100%; height:auto; max-height:470px; aspect-ratio:4/5; object-fit:cover; border:10px solid var(--surface); box-shadow:var(--shadow); }
 .personal-photo figcaption { font-family:monospace; font-size:.6rem; color:var(--muted); letter-spacing:.08em; margin-top:15px; }
-.everyday-section,.favorite-games { max-width:1400px; margin:auto; padding:60px 6vw; }
+.everyday-section,.favorite-games { max-width:1520px; margin:auto; padding:60px var(--content-gutter,6vw); }
 .everyday-section h2,.favorite-games h2 { font-size:clamp(2rem,3vw,3rem); line-height:1.2; margin-bottom:25px; }
 .interest-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
 .interest-card { padding:30px; border:1px solid var(--border); background:var(--surface); border-radius:8px 8px 0 8px; }

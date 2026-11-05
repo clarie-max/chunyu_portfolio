@@ -20,6 +20,7 @@
       color-scheme: light;
       --page:#f3f0e8; --surface:#fbfaf5; --soft:#e8e7df; --text:#24271f;
       --muted:#65685e; --border:#d2d0c5; --accent:#4f684f; --grid:rgba(79,104,79,.045);
+      --detail-max-width:1240px; --detail-gutter:clamp(24px,5vw,80px);
     }
     :root[data-theme="dark"] {
       color-scheme: dark;
@@ -36,7 +37,7 @@
     a { color:inherit; }
     .topbar {
       position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between;
-      gap:1rem; padding:1rem max(1rem,calc((100vw - 1120px)/2));
+      gap:1rem; padding:1rem max(var(--detail-gutter),calc((100vw - var(--detail-max-width))/2));
       background:color-mix(in srgb,var(--page) 92%,transparent); border-bottom:1px dashed var(--border); backdrop-filter:blur(16px);
     }
     .back {
@@ -47,7 +48,7 @@
     .back:hover,.back:focus-visible { color:var(--accent); border-color:var(--accent); }
     .case-id { color:var(--accent); font:700 .72rem/1 "SFMono-Regular",Consolas,monospace; letter-spacing:.08em; }
     .theme-toggle { width:42px;height:42px;border:1px solid var(--border);border-radius:50%;background:var(--surface);color:var(--text);cursor:pointer; }
-    .wrap { width:min(calc(100% - 2rem),1120px); margin:auto; }
+    .wrap { width:min(calc(100% - 2 * var(--detail-gutter)),var(--detail-max-width)); margin:auto; }
     main { padding:clamp(3rem,8vw,7rem) 0 6rem; }
     .category { color:var(--accent);font:700 .78rem/1 "SFMono-Regular",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase; }
     h1 { margin:1rem 0 .75rem;font-size:clamp(3.6rem,10vw,8rem);line-height:.86;letter-spacing:-.075em; }
@@ -80,6 +81,9 @@
     @media(max-width:720px){.content-grid,.media-grid{grid-template-columns:1fr}.media-card.wide{grid-column:auto}.case-id{display:none}.bottom-nav{align-items:flex-start;flex-direction:column}.hero-visual{min-height:240px}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
+  <link rel="stylesheet" href="resources/a-way-to-you-case.css">
+  <link rel="stylesheet" href="resources/shattered-light-case.css">
+  <link rel="stylesheet" href="resources/doorcom-case.css">
 </head>
 <body>
   <header class="topbar">
@@ -109,23 +113,14 @@
   </main>
   <script>
     const projects = {
-      'shattered-light': { category:'Game Design', title:'Shattered Light', date:'Graduation Project · 2026', visual:'<img src="resources/projects/shattered-light/concept-art.png" alt="Shattered Light concept artwork">', role:'Solo Game Designer, Level Designer, Researcher & Unity Developer', tools:'Unity 2020.3 · C# · Figma · SPSS', focus:'Narrative systems · Level design · User testing', story:[
-        '<strong>Overview.</strong> A multimodal narrative puzzle game for university students experiencing academic stress. The experience translates cognitive behavioral therapy into approachable play.',
-        '<strong>Level structure.</strong> Three connected levels turn behavioral activation, cognitive restructuring, and problem-solving into exploration, dialogue choices, tasks, and environmental feedback.',
+      'shattered-light': { category:'Game Design', title:'Shattered Light', date:'Thesis & Ongoing Prototype · 2026', visual:'<img src="resources/projects/shattered-light/card-preview-1280.webp" alt="Shattered Light concept illustration, not a gameplay capture">', role:'Solo Game Designer, Level Designer, Researcher & Unity Developer', tools:'Unity · C# · Figma · SPSS', focus:'Narrative systems · Level design · User testing', story:[
+        '<strong>Current prototype.</strong> A first-person narrative project about taking small actions under academic stress. The school chapter has been reworked around presentation anxiety: reply to a friend, try a first sentence, and decide how to enter together.',
+        '<strong>Chapter structure.</strong> The school story records choices without a mood score or a requirement to complete every activity. The bedroom and park retain their earlier dialogue and object-interaction structure; their narrative revisions are still ahead.',
         '<strong>My contribution.</strong> I defined the experience, structured the three-level emotional arc, designed the interaction and feedback systems, built the Unity prototype, and planned the research and user testing.',
-        '<strong>Outcome.</strong> Testing with 13 students achieved an SUS score of 80.8 and a PGQ score of 89.7. CBT knowledge accuracy increased from 48.5% to 88.7%.'
+        '<strong>Earlier thesis evaluation.</strong> In a single-session study with 13 students, the mean System Usability Scale score was 80.8/100, and mean CBT knowledge accuracy was 48.5% before play and 88.7% afterward. These results belong to the earlier thesis build, not the current school revision, and do not establish long-term emotional improvement.'
       ], media:[
-        {src:'resources/projects/shattered-light/thesis-shattered-light-board.jpg',alt:'Shattered Light graduation project board',caption:'Graduation project overview: research framing, CBT-based design model, game structure, and usability evaluation.',wide:true},
-        {src:'resources/projects/shattered-light/design-framework.png',alt:'Shattered Light concept and interaction framework',caption:'The game’s CBT-informed interaction framework, connecting understanding, choice, practice, and reflection.',wide:true},
-        {src:'resources/projects/shattered-light/gameplay/level-01-intro.png',alt:'Shattered Light opening narrative text',caption:'Level 1 opening: setting the emotional context and inviting the player to begin reflection.'},
-        {src:'resources/projects/shattered-light/gameplay/level-01-classroom.png',alt:'Shattered Light classroom environment',caption:'Level 1 environment: an everyday classroom becomes a space for observation and learning.'},
-        {src:'resources/projects/shattered-light/gameplay/level-01-handbook.png',alt:'Shattered Light CBT handbook interface',caption:'Level 1 handbook: players discover the three core emotional-regulation approaches through an in-world object.'},
-        {src:'resources/projects/shattered-light/gameplay/level-01-exploration.png',alt:'Shattered Light classroom exploration scene',caption:'Level 1 exploration: environmental interaction connects the handbook to the playable space.'},
-        {src:'resources/projects/shattered-light/gameplay/level-02-phone.png',alt:'Shattered Light phone interaction scene',caption:'Level 2: a familiar phone interaction introduces a moment of emotional friction.'},
-        {src:'resources/projects/shattered-light/gameplay/level-02-choice.png',alt:'Shattered Light cognitive restructuring choice interface',caption:'Level 2 decision screen: players compare possible responses and practice reframing a difficult thought.'},
-        {src:'resources/projects/shattered-light/gameplay/level-02-typewriter-puzzle.png',alt:'Shattered Light typewriter puzzle scene',caption:'Level 2 interaction: a typewriter puzzle externalizes thoughts as an actionable game task.'},
-        {src:'resources/projects/shattered-light/gameplay/level-02-typewriter-complete.png',alt:'Shattered Light typewriter state',caption:'Level 2 state change: interaction feedback marks progress through the puzzle.'},
-        {src:'resources/projects/shattered-light/gameplay/level-03-forest.png',alt:'Shattered Light forest level',caption:'Level 3: an open forest space supports problem-solving through navigation and environmental discovery.'}
+        {src:'resources/projects/shattered-light/gameplay/level-02-dialogue-thesis.jpg',alt:'Earlier prototype dialogue choices after missing a hike',caption:'Earlier thesis capture. Bedroom narrative revision is pending.'},
+        {src:'resources/projects/shattered-light/gameplay/level-03-objective-thesis.jpg',alt:'Earlier prototype park mission and inventory',caption:'Earlier thesis capture. Park narrative revision is pending.'}
       ]},
       'self': { category:'Interactive Design', title:'SELF', date:'Sept 2025 – Nov 2025', visual:'<img src="resources/projects/self/experience-hero.png" alt="Hands interacting with the projected particle field in SELF">', role:'Interaction Designer', tools:'Leap Motion · TouchDesigner · Figma', focus:'Embodied interaction · Emotion visualization', story:['<strong>Overview.</strong> SELF is a self-reflection interactive installation that lets participants examine their inner personality through a responsive digital avatar and projected particle field.', '<strong>Experience arc.</strong> The installation moves between two situations: being alone and entering social occasions. These shifts frame the relationship between the Id, Ego, and Superego as participants move through the experience.', '<strong>Gesture as input.</strong> Leap Motion reads hand motion, speed, acceleration, jitter, and the distance between hands. The system uses these signals to infer calm or tense states and translates them into color, particles, and avatar behavior.', '<strong>Design intention.</strong> By making internal states visible through the body, the installation invites participants to pause, observe their reactions, and reconsider how they present themselves around others.'], media:[{src:'resources/projects/self/interaction-journey.png',alt:'SELF interaction journey from calm to social noise',caption:'Interaction journey: gestures move between calm, social pressure, and a return to reflection.',wide:true},{src:'resources/projects/self/particle-states.png',alt:'SELF projected particle and avatar visual states',caption:'Visual states respond to changes in gesture and emotional intensity.'},{src:'resources/projects/self/hero-image.png',alt:'SELF installation overview',caption:'Installation overview and experience framing.'}] },
       'sharehouse': { category:'Service & UX', title:'ShareHouse', date:'July 2025 – Oct 2025', visual:'<img src="resources/projects/sharehouse/hero-image.png" alt="ShareHouse household collaboration app interface">', role:'Service & UX Designer', tools:'NFC · Mobile UI · Data visualization', focus:'Domestic collaboration · Emotional labor', story:['<strong>Overview.</strong> ShareHouse is a household collaboration system for making domestic and emotional labor visible, discussable, and easier to coordinate across family members.', '<strong>Research.</strong> Surveys and interviews surfaced unequal task division, low recognition of invisible work, mismatched standards of cleanliness, and conflict around responsibility. The research mapped the needs of caregivers, partners, and children.', '<strong>System design.</strong> NFC-supported task records connect to a mobile app for household setup, shared schedules, contribution history, personal data, and family rankings. The system turns fragmented chores into a shared view of participation.', '<strong>Experience goal.</strong> The app pairs practical scheduling with lightweight feedback and family incentives, helping members recognize contributions and build a fairer daily rhythm together.'] },
@@ -141,7 +136,7 @@
       'ai-literacy-animation': { category:'Interactive Design', title:'AI Literacy Animation', date:'Educational Animation', visual:'<img src="resources/projects/ai-literacy-animation/animation-still-dialogue.png" alt="Animated characters explaining an AI concept">', role:'Animation Designer', tools:'Educational animation · Transformer · Visual storytelling', focus:'AI literacy · Beginner education', story:['<strong>Overview.</strong> An introductory animation project that explains foundational artificial-intelligence concepts through clear, approachable visual storytelling.', '<strong>Transformer, made approachable.</strong> The animation translates the Transformer model and related AI ideas into a beginner-friendly narrative, using visual explanation rather than technical jargon.', '<strong>Public presentation.</strong> This portfolio shares selected animation stills rather than the full film because of copyright restrictions. <a href="https://mp.weixin.qq.com/s/epikNeiEwUdZk046X9H8kw" target="_blank" rel="noreferrer">Read the official SCUT coverage ↗</a>.'], media:[{src:'resources/projects/ai-literacy-animation/animation-still-magic-glasses.png',alt:'Animation still introducing a magic glasses analogy for AI',caption:'Animation still: using a “magic glasses” analogy to introduce how a system helps interpret language.'},{src:'resources/projects/ai-literacy-animation/animation-still-collective-thought.png',alt:'Animation still showing multiple characters contributing to understanding',caption:'Animation still: a visual explanation of collective context and interpretation.'},{src:'resources/projects/ai-literacy-animation/animation-still-dialogue.png',alt:'Animation still with characters in dialogue',caption:'Animation still: a narrative scene used to make abstract AI ideas more approachable.',wide:true}] }
     };
     projects['trick-or-treat'] = {
-      category:'Game Design · Tabletop', title:'Trick or Treat', date:'USC · Tabletop Game',
+      category:'Game Design · Tabletop', title:'Trick or Treat', date:'USC · Tabletop Game · 2026',
       visual:'<img src="resources/projects/trick-or-treat/hero-image.png" alt="Trick or Treat title artwork">',
       role:'Team project · Chunyu Ji, Lejie Lin, Peggy Zhu', tools:'Physical prototyping · Rule design · Playtesting', focus:'4 players · Spatial planning · Player interaction',
       story:[
@@ -154,7 +149,7 @@
       media:[{src:'resources/projects/trick-or-treat/playtest-session.png',alt:'Trick or Treat tabletop playtest',caption:'Playtest setup with four basket boards and shared card decks.',wide:true},{src:'resources/projects/trick-or-treat/rules-v4-page-01.png',alt:'Trick or Treat components and setup rules',caption:'Components, Trick Card effects, and setup.',wide:true},{src:'resources/projects/trick-or-treat/rules-v4-page-02.png',alt:'Trick or Treat turn sequence and scoring',caption:'Turn structure, spatial placement, scoring, and end conditions.',wide:true}]
     };
     projects['battlefield-3036'] = {
-      category:'Game Design · Tabletop', title:'Battlefield 3036', date:'USC · Tabletop Game',
+      category:'Game Design · Tabletop', title:'Battlefield 3036', date:'USC · Tabletop Game · 2026',
       visual:'<img src="resources/projects/battlefield-3036/rules-v1-page-01.jpg" alt="Battlefield 3036 overview and board setup">',
       role:'Co-designer & rules editor', tools:'Physical prototyping · Rule design · Playtesting', focus:'Risk-taking · Tactical interaction · Survival race',
       story:[
@@ -167,12 +162,13 @@
       media:[{src:'resources/projects/battlefield-3036/rules-v1-page-02.jpg',alt:'Battlefield 3036 gameplay rules',caption:'Detailed gameplay reference and action rules.',wide:true}]
     };
     projects['a-way-to-you'] = {
-      category:'Game Design · Exploration', title:'A Way to You', date:'Game Prototype · 2026',
-      visual:'<img src="resources/projects/a-way-to-you/hero-image.png" alt="A Way to You cover artwork: a monochrome city street, echo rings, and a friend waiting at a pizza restaurant">',
-      demo:'resources/projects/a-way-to-you/demo.mp4', demoLabel:'Gameplay walkthrough', demoNote:'A complete walkthrough of the current prototype. Headphones recommended.',
-      role:'Game Designer & Unity Developer', tools:'Unity · C# · Universal Render Pipeline', focus:'Sound-guided exploration · Spatial memory · Environmental storytelling',
+      category:'Game Design · Exploration', title:'A Way to You', date:'Solo Course Project · 3 weeks · 2026',
+      visual:'',
+      youtubeId:'Y_OGXDYPicM',
+      demoLabel:'Gameplay walkthrough', demoNote:'Gameplay from the three-week course prototype. Headphones recommended.',
+      role:'Solo Designer & Developer · Game & Level Design', tools:'Unity · C# · Universal Render Pipeline', focus:'Sound-guided exploration · Spatial memory · Environmental storytelling',
       story:[
-        '<strong>Overview.</strong> A first-person exploration game about crossing a city block to meet a friend at a pizza restaurant. Playing as a person with limited vision, you use sound and brief echo outlines to make sense of the street around you.',
+        '<strong>Overview.</strong> A solo, three-week course prototype made in 2026. Cross a city block with limited vision to meet a friend at a pizza restaurant, using sound and fading echo outlines to make sense of the street.',
         '<strong>Core loop: listen, probe, remember, move.</strong> Probe nearby surfaces to send out an echo and reveal white contours against a dark scene. Those clear edges gradually fade into a dim, blurred spatial memory, helping you orient yourself as you choose where to move next.',
         '<strong>Level design.</strong> Tactile paving provides a route through the street, while shopping carts, parked scooters, and outdoor seating make everyday spaces harder to navigate. The changing visibility of each obstacle makes probing and remembering the surroundings part of traversal.',
         '<strong>A way for both of us.</strong> Reaching your friend changes the goal: their wheelchair cannot pass the restaurant\'s front step. Find a side ramp, confirm the route, and return to your friend so you can continue together. The ending connects the navigation mechanic to a shared need for access.'
@@ -180,8 +176,14 @@
       media:[
         {src:'resources/projects/a-way-to-you/gameplay-tactile-path.webp',alt:'White echo outlines reveal tactile paving in the dark street',caption:'Probe the ground to read the tactile path and nearby geometry.'},
         {src:'resources/projects/a-way-to-you/gameplay-street-obstacles.webp',alt:'A shopping cart appears in white contours beside the sidewalk',caption:'Everyday street objects become obstacles to identify and navigate around.'},
-        {src:'resources/projects/a-way-to-you/gameplay-meeting-friend.webp',alt:'A friend in a wheelchair explains that the restaurant step blocks their way',caption:'At the destination, finding your friend becomes finding a route you can share.',wide:true}
+        {src:'resources/projects/a-way-to-you/gameplay-meeting-friend.webp',alt:'A friend in a wheelchair explains that the restaurant step blocks their way',caption:'At the destination, finding your friend becomes finding a route you can share.'},
+        {src:'resources/projects/a-way-to-you/gameplay-ramp-discovery.webp',alt:'An echo reveals the sloping ramp and handrails beside the restaurant',caption:'Probe the ramp and approach it before returning to the friend.'}
       ]
+    };
+    projects['doorcom'] = {
+      category:'Game Design · Spatial Puzzles', title:'Doorcom', date:'Collaborative Unity Prototype · In Development · 2026',
+      visual:'', role:'Game Concept & Level Designer · Unity Developer', tools:'Unity · C# · URP', focus:'Portal exploration · Social media · Branching endings',
+      story:['A surreal first-person prototype that turns a social media feed into a sequence of rooms, with five themed stages and a final choice to disconnect.']
     };
     projects['echo-wood'].youtubeId = 'f8-BJFBRETY';
     projects['luckin-paw'].youtubeId = 'oGEhQD9pXHQ';
@@ -234,5 +236,8 @@
     toggle.addEventListener('click',()=>{const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=theme;try{localStorage.setItem('portfolio-theme',theme)}catch(_){}updateToggle();});
     updateToggle();
   </script>
+  <script src="resources/a-way-to-you-case.js"></script>
+  <script src="resources/shattered-light-case.js"></script>
+  <script src="resources/doorcom-case.js"></script>
 </body>
 </html>
